@@ -1,0 +1,9 @@
+.n_link{
+    margin-left: 30px;
+}
+
+.n_link a{
+ text-decoration: none;
+ margin-left: 10px;
+ color: rgb(45, 43, 43);
+}

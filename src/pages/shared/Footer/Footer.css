@@ -1,0 +1,15 @@
+footer{
+    background:#06113C;
+    color: aliceblue;
+}
+.footer{
+    padding: 50px 10px;
+}
+.footer-text{
+color:#FF8C32 ;
+}
+.list li{
+    list-style: none;
+    margin-left: -25px;
+
+}

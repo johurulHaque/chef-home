@@ -1,10 +1,12 @@
 import React from 'react';
-import Header from '../pages/shared/Header';
+import Header from '../pages/shared/Header/Header';
+import Footer from '../pages/shared/Footer/Footer';
 
 const Main = () => {
     return (
         <div>
-            <Header></Header>            
+            <Header></Header>
+            <Footer></Footer>            
         </div>
     );
 };
