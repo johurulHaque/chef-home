@@ -1,36 +1,56 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import { AuthContext } from "../providers/AuthProviders";
-// import {  } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 
 const Login = () => {
-//   const { signIn } = useContext(AuthContext);
+  const { signIn, googleSign, githubSign } = useContext(AuthContext);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = (event) => {
     event.preventDefault();
+    setError("");
+    setSuccess("");
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(name, email, password);
-
-    
-    // signIn(email, password)
-    //   .then((result) => {
-    //     const user = result.user;
-    //     if(user.emailVerified){
-    //         alert('please verify your email')
-    //     }
-    //     console.log(user);
-    //     form.reset();
-    //   })
-    //   .catch((error) => {
-    //     const errorMessage = error.message;
-    //     console.log(errorMessage);
-    //   });
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        setSuccess("Successfully Login.");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
+  };
+  const handleGoogle = () => {
+    googleSign()
+      .then((result) => {
+        const user = result.user;
+        // setSuccess("user has create successfully");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        // console.log(errorMessage);
+      });
   };
 
+  const handleGithub = () => {
+    githubSign()
+      .then((result) => {
+        const user = result.user;
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        // console.log(errorMessage);
+      });
+  };
   return (
     <Container className="w-25 mx-auto">
       <Form onSubmit={handleLogin}>
@@ -53,15 +73,23 @@ const Login = () => {
             required
           />
         </Form.Group>
-        <Form.Group controlId="formBasicCheckbox">
+        {/* <Form.Group controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
+        </Form.Group> */}
         <Button variant="primary" type="submit">
           Login
         </Button>
         <Link to="/register">Go to register</Link>
         <Form.Text className="text-danger"></Form.Text>
       </Form>
+      <p className="text-success">{success}</p>
+      <p className="text-danger">{error}</p>
+      <Button variant="outline-primary" onClick={handleGoogle}>
+        Sing With Google <FaGoogle />
+      </Button>
+      <Button variant="outline-info" onClick={handleGithub}>
+        Sing With Github <FaGithub />
+      </Button>
     </Container>
   );
 };
