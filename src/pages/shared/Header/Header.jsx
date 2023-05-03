@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import './Header.css'
+import { AuthContext } from "../../../providers/AuthProviders";
 
 const Header = () => {
+  const {user} = useContext(AuthContext);
+  console.log(user)
+
+
+  const handleLogout = ()=>{
+
+  }
+
+  
   return (
     <Container>
       <Navbar collapseOnSelect expand="lg" bg="lite" variant="lite">
@@ -22,8 +32,15 @@ const Header = () => {
             <NavLink to="/blog">Blog</NavLink>
           </Nav>
           <Nav>
-            <span>profile</span>
-            <Link to="/login"><Button variant="outline-success">Login</Button></Link>
+            {
+              user && <img src={user.photoURL} title={user ?.displayName}/>
+            }
+            {/* <span>{user.displayName} */}
+            {
+              user ? <Button variant="outline-success" onClick={handleLogout}>Logout</Button>: <Link to="/login"><Button variant="outline-success">Login</Button></Link>
+            }
+            
+            
           </Nav>
         </Navbar.Collapse>
       </Navbar>

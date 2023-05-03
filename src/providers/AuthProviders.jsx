@@ -1,9 +1,10 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -17,8 +18,20 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
+
 const AuthProviders = ({ children }) => {
-  const user = { displayName: "jony" };
+  const [user,setUser] = useState(null);
+
+  useEffect(()=>{
+    const unsubscribe = onAuthStateChanged(auth,loggedUser =>{
+      console.log('logged user',loggedUser);
+      setUser(loggedUser);
+    })
+
+    return ()=> {
+      unsubscribe();
+    }
+  },[])
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -40,9 +53,9 @@ const AuthProviders = ({ children }) => {
     return updateProfile(name,obj);
   }
 
-  //   const googleSignOut = () => {
-  //     return signOut(auth);
-  //   };
+    const allSignOut = () => {
+      return signOut(auth);
+    };
 
 
 
@@ -52,8 +65,8 @@ const AuthProviders = ({ children }) => {
     signIn,
     googleSign,
     githubSign,
-    updateUser
-    // googleSignOut,
+    updateUser,
+    allSignOut,
   };
 
   return (

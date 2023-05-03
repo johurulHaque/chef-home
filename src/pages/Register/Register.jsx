@@ -2,10 +2,11 @@ import React, { useContext, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
-import { FaGoogle,FaGithub } from "react-icons/fa";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 
 const Register = () => {
-  const { createUser, googleSign, githubSign,updateUser } = useContext(AuthContext);
+  const { createUser, googleSign, githubSign, updateUser } =
+    useContext(AuthContext);
   // , googleSignOut
   // const [user, setUser] = useState("");
   const [success, setSuccess] = useState("");
@@ -27,61 +28,57 @@ const Register = () => {
     } else if (password.length < 6) {
       setError("Password must be in six character.");
       return;
-    } 
+    }
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         form.reset();
 
-
         updateUserProfile(user, {
-          displayName: name, photoURL: photoURL
-        })
+          displayName: name,
+          photoURL: photoURL,
+        });
 
-
-
-        
-        setSuccess('successfully register the user')
+        setSuccess("successfully register the user");
       })
       .catch((error) => {
         const errorMessage = error.message;
         setError(errorMessage);
       });
   };
-  const updateUserProfile =(user,name)=>{
-    updateUser(user,name)
-    .then(() => {
-      console.log(user)
-    }).catch((error) => {
-      // An error occurred
-      // ...
-  })
-  }
-    const handleGoogle = () => {
-      googleSign()
-        .then((result) => {
-          const user = result.user;
-          setSuccess("user has create successfully");
-        })
-        .catch((error) => {
-          const errorMessage = error.message;
-          // console.log(errorMessage);
-        });
-    };
+  const updateUserProfile = (user, obj) => {
+    updateUser(user, obj)
+      .then(() => {
+        // console.log(user);
+      })
+      .catch((error) => {
+        // An error occurred
+        // ...
+      });
+  };
+  const handleGoogle = () => {
+    googleSign()
+      .then((result) => {
+        const user = result.user;
+        setSuccess("user has create successfully");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        // console.log(errorMessage);
+      });
+  };
 
-    const handleGithub = () => {
-      githubSign()
-        .then((result) => {
-          const user = result.user;
-        })
-        .catch((error) => {
-          const errorMessage = error.message;
-          // console.log(errorMessage);
-        });
-    };
-
-   
+  const handleGithub = () => {
+    githubSign()
+      .then((result) => {
+        const user = result.user;
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        // console.log(errorMessage);
+      });
+  };
 
   //   const handleSignOut = () => {
   //     googleSignOut()
@@ -103,7 +100,6 @@ const Register = () => {
             name="name"
             placeholder="Enter name"
             required
-         
           />
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
@@ -113,7 +109,6 @@ const Register = () => {
             name="photoURL"
             placeholder="Enter photo url"
             required
-       
           />
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
@@ -123,7 +118,6 @@ const Register = () => {
             name="email"
             placeholder="Enter email"
             required
-          
           />
         </Form.Group>
 
@@ -134,7 +128,6 @@ const Register = () => {
             name="password"
             placeholder="Password"
             required
-       
           />
         </Form.Group>
         {/* <Form.Group controlId="formBasicCheckbox">
@@ -162,8 +155,12 @@ const Register = () => {
       )} */}
       <p className="text-success">{success}</p>
       <p className="text-danger">{error}</p>
-      <Button variant="outline-primary" onClick={handleGoogle}>Sing With Google  <FaGoogle /></Button>
-      <Button variant="outline-info" onClick={handleGithub}>Sing With Github <FaGithub /></Button>
+      <Button variant="outline-primary" onClick={handleGoogle}>
+        Sing With Google <FaGoogle />
+      </Button>
+      <Button variant="outline-info" onClick={handleGithub}>
+        Sing With Github <FaGithub />
+      </Button>
     </Container>
   );
 };
