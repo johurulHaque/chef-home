@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Button, Card, Col, Spinner } from "react-bootstrap";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
-import toast from 'react-hot-toast';
-
+import toast from "react-hot-toast";
+import LazyLoad from 'react-lazy-load';
 const RecipeCard = ({ recipe }) => {
   const { name, rating, ingredients, image, cooking_method } = recipe;
-  const [disable,setDisable] = useState(false)
+  const [disable, setDisable] = useState(false);
   //   console.log("recipe", recipe);
   //   const [spinner, setSpinner] = useState(true);
 
@@ -14,9 +14,9 @@ const RecipeCard = ({ recipe }) => {
   //     setSpinner(false);
   //   }
   const notify = () => {
-    toast.success('The recipe is your favorite.');
+    toast.success("The recipe is your favorite.");
     setDisable(true);
-};
+  };
   return (
     <Col>
       {/* {spinner && (
@@ -26,7 +26,11 @@ const RecipeCard = ({ recipe }) => {
       )} */}
 
       <Card>
-        <Card.Img variant="top" src="https://i.ibb.co/1M1nCdj/2.png" />
+        <LazyLoad height={300}>
+          {/* <img src='http://apod.nasa.gov/apod/image/1502/HDR_MVMQ20Feb2015ouellet1024.jpg' /> */}
+          <Card.Img variant="top" src="https://i.ibb.co/1M1nCdj/2.png" />
+        </LazyLoad>
+
         <Card.Body>
           <Card.Title>
             <div className="d-flex justify-content-between align-items-center">
@@ -54,7 +58,9 @@ const RecipeCard = ({ recipe }) => {
             ></Rating>
             <span className="ms-1">{rating}</span>
           </div>
-          <Button variant="info" onClick={notify} disabled={disable}>Add to favorite</Button>
+          <Button variant="info" onClick={notify} disabled={disable}>
+            Add to favorite
+          </Button>
         </Card.Body>
       </Card>
     </Col>
