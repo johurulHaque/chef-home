@@ -6,4 +6,4 @@
    * Recipe details page where chef details is shown , and also show the chef best recipe.
    * A about us page show some kind of company information.
 * Site link
- [Click me to go to Job Hunter!]()
+ [Click me to go to Chef Home!](https://chef-home-bb09f.web.app/)

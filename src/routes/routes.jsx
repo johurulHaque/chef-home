@@ -8,6 +8,8 @@ import Recipe from "../pages/Recipe/Recipe";
 import RecipeLayout from "../layout/RecipeLayout";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import BlogLayout from "../layout/BlogLayout";
+import Blog from "../pages/Blog/Blog";
 
 const router = createBrowserRouter([
   {
@@ -32,9 +34,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: ":id",
-        loader: ({params})=> fetch(`http://localhost:5000/chef/${params.id}`),
+        loader: ({params})=> fetch(`https://chef-home-server-johurulhaque.vercel.app/chef/${params.id}`),
         element: <Recipe />,        
-      },      
+      }   
+            
     ],
   },
   {
@@ -46,6 +49,19 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      
+    ],
+  },
+  {
+    path: "/blog",
+   
+    element:  <BlogLayout></BlogLayout>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/blog",
+        element: <Blog />,
       },
       
     ],

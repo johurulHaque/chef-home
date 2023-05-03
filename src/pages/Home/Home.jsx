@@ -17,7 +17,7 @@ const Home = () => {
   const [spinner, setSpinner] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/chef")
+    fetch("https://chef-home-server-johurulhaque.vercel.app/chef")
       .then((res) => res.json())
       .then((data) => {
         setChefs(data);
@@ -96,7 +96,8 @@ const Home = () => {
               <Card.Title>Affordable Prices 💲</Card.Title>
               <Card.Text>
                 We believe that great food should be accessible to everyone,
-                which is why we offer our delicious dishes at affordable prices.We are always here to serve you.
+                which is why we offer our delicious dishes at affordable
+                prices.We are always here to serve you.
               </Card.Text>
             </Card.Body>
             <Card.Footer>
