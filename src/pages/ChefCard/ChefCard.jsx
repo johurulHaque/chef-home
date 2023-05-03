@@ -10,7 +10,7 @@ const ChefCard = ({ chef }) => {
   return (
     <Col>
       <Card>
-        <Card.Img variant="top" src="/src/assets/chef.jpg" />
+        <Card.Img variant="top" src="https://i.ibb.co/1M1nCdj/2.png" />
         <Card.Body>
           <Card.Title>
             <div className="d-flex justify-content-between align-items-center">

@@ -5,7 +5,7 @@ import { AuthContext } from "../../providers/AuthProviders";
 import { FaGoogle,FaGithub } from "react-icons/fa";
 
 const Register = () => {
-  const { createUser, googleSign, githubSign } = useContext(AuthContext);
+  const { createUser, googleSign, githubSign,updateUser } = useContext(AuthContext);
   // , googleSignOut
   // const [user, setUser] = useState("");
   const [success, setSuccess] = useState("");
@@ -33,6 +33,15 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         form.reset();
+
+
+        updateUserProfile(user, {
+          displayName: name, photoURL: photoURL
+        })
+
+
+
+        
         setSuccess('successfully register the user')
       })
       .catch((error) => {
@@ -40,7 +49,15 @@ const Register = () => {
         setError(errorMessage);
       });
   };
-
+  const updateUserProfile =(user,name)=>{
+    updateUser(user,name)
+    .then(() => {
+      console.log(user)
+    }).catch((error) => {
+      // An error occurred
+      // ...
+  })
+  }
     const handleGoogle = () => {
       googleSign()
         .then((result) => {
@@ -63,6 +80,8 @@ const Register = () => {
           // console.log(errorMessage);
         });
     };
+
+   
 
   //   const handleSignOut = () => {
   //     googleSignOut()
