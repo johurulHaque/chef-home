@@ -6,11 +6,13 @@ import Register from "../pages/Register/Register";
 import Home from "../pages/Home/Home";
 import Recipe from "../pages/Recipe/Recipe";
 import RecipeLayout from "../layout/RecipeLayout";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/login",
@@ -25,17 +27,18 @@ const router = createBrowserRouter([
   {
     path: "/chef",
     element: <RecipeLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: ":id",
         element: <Recipe />,        
-      },
-      
+      },      
     ],
   },
   {
     path: "/home",
     element: <Main></Main>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/home",
