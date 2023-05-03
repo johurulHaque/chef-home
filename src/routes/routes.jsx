@@ -7,6 +7,7 @@ import Home from "../pages/Home/Home";
 import Recipe from "../pages/Recipe/Recipe";
 import RecipeLayout from "../layout/RecipeLayout";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <Main></Main>,
+    // element: <PrivateRoute> <Main></Main></PrivateRoute>,
+    element:  <Main></Main>,
     errorElement: <ErrorPage />,
     children: [
       {

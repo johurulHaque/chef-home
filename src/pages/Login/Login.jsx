@@ -1,11 +1,16 @@
 import React, { useContext, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 
+
 const Login = () => {
   const { signIn, googleSign, githubSign } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/home";
+
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
@@ -20,9 +25,10 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         form.reset();
         setSuccess("Successfully Login.");
+        navigate(from);
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -33,6 +39,7 @@ const Login = () => {
     googleSign()
       .then((result) => {
         const user = result.user;
+        navigate(from);
         // setSuccess("user has create successfully");
       })
       .catch((error) => {
@@ -45,6 +52,7 @@ const Login = () => {
     githubSign()
       .then((result) => {
         const user = result.user;
+        navigate(from);
       })
       .catch((error) => {
         const errorMessage = error.message;

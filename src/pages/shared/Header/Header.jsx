@@ -5,15 +5,19 @@ import './Header.css'
 import { AuthContext } from "../../../providers/AuthProviders";
 
 const Header = () => {
-  const {user} = useContext(AuthContext);
+  const {user,allSignOut} = useContext(AuthContext);
   console.log(user)
 
 
   const handleLogout = ()=>{
-
+    allSignOut().then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+    });
   }
 
-  
+
   return (
     <Container>
       <Navbar collapseOnSelect expand="lg" bg="lite" variant="lite">
@@ -33,7 +37,7 @@ const Header = () => {
           </Nav>
           <Nav>
             {
-              user && <img src={user.photoURL} title={user ?.displayName}/>
+              user && <img src={user?.photoURL} title={user ?.displayName}/>
             }
             {/* <span>{user.displayName} */}
             {
