@@ -3,7 +3,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-
+import "./Login.css";
 
 const Login = () => {
   const { signIn, googleSign, githubSign } = useContext(AuthContext);
@@ -61,7 +61,7 @@ const Login = () => {
   };
   return (
     <Container className="w-25 mx-auto">
-      <Form onSubmit={handleLogin}>
+      <Form onSubmit={handleLogin} className="mb-2">
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -72,7 +72,7 @@ const Login = () => {
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group controlId="formBasicPassword" className="mb-2">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -84,19 +84,20 @@ const Login = () => {
         {/* <Form.Group controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group> */}
-        <Button variant="primary" type="submit">
+        <Button variant="info" type="submit">
           Login
         </Button>
-        <Link to="/register">Go to register</Link>
-        <Form.Text className="text-danger"></Form.Text>
+        <Link to="/register" style={{textDecoration:"none"}}> or Register</Link><br />
+        <Form.Text className="text-success">{success}</Form.Text>
+        <Form.Text className="text-danger">{error}</Form.Text>
       </Form>
-      <p className="text-success">{success}</p>
-      <p className="text-danger">{error}</p>
-      <Button variant="outline-primary" onClick={handleGoogle}>
-        Sing With Google <FaGoogle />
+      {/* <p className="text-success">{success}</p>
+      <p className="text-danger">{error}</p> */}
+      <Button variant="outline-primary" onClick={handleGoogle} className="mb-2">
+        <FaGoogle /> Sing With Google
       </Button>
       <Button variant="outline-info" onClick={handleGithub}>
-        Sing With Github <FaGithub />
+        <FaGithub /> Sing With Github
       </Button>
     </Container>
   );

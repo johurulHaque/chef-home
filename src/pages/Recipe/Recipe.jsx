@@ -12,26 +12,24 @@ const Recipe = () => {
   const { bio, experience, image, name, numLikes, numRecipes, recipe } =
     singleChef;
   //   console.log(recipe);
-  const position = [51.505, -0.09];
+  // const position = [51.505, -0.09];
 
   return (
     <Container fluid className="bg-light py-5">
       <Row>
         <Col md={4}>
           <LazyLoad height={300}>
-            {/* <img src='http://apod.nasa.gov/apod/image/1502/HDR_MVMQ20Feb2015ouellet1024.jpg' /> */}
-            <Image src="https://i.ibb.co/1M1nCdj/2.png" fluid rounded />
-            {/* <Card.Img variant="top" src="https://i.ibb.co/1M1nCdj/2.png" /> */}
+            <Image src={image} fluid rounded />
           </LazyLoad>
         </Col>
         <Col md={8}>
-          <h1>{name}</h1>
-          <p>{bio}</p>
-          <p>Likes: {numLikes}</p>
-          <p>Number of Recipes: {numRecipes}</p>
-          <p>Years of Experience: {experience}</p>
+          <h2 className="chef_name">{name}</h2>
+          <p className="chef_text">{bio}</p>
+          <p  className="chef_text">Likes: {numLikes}</p>
+          <p  className="chef_text">Number of Recipes: {numRecipes}</p>
+          <p  className="chef_text">Years of Experience: {experience}</p>
           <Badge pill variant="primary">
-            Featured Chef
+            Fantastic Chef
           </Badge>
         </Col>
       </Row>

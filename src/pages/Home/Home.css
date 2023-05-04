@@ -1,6 +1,15 @@
+
 .loader_spin{
     height: 250px;
     display: flex;
     justify-content: center;
     align-items:  center;
+}
+.banner_head{
+    font-family: 'Instrument Serif', serif;
+    font-size: 30px;
+}
+
+.heading_text{
+    font-family: 'Lobster Two', cursive;;
 }

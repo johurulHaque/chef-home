@@ -27,15 +27,10 @@ const Home = () => {
 
   // console.log(chef)
   return (
-    <Container>
-      {spinner && (
-        <div className="loader_spin">
-          <Spinner animation="border" variant="warning" />
-        </div>
-      )}
-      <Row className="align-items-center">
+    <Container>      
+      <Row className="align-items-center" style={{marginBottom:"25px"}}>
         <Col md={6} className="p-5">
-          <h1>Delicious Chinese Food</h1>
+          <h1 className="banner_head">Delicious Chinese Food</h1>
           <p>
             Explore our menu and savor the flavors of traditional Chinese
             cuisine. From savory stir-fries to delectable dumplings, we have
@@ -49,17 +44,20 @@ const Home = () => {
           <Image src="/images.jpg" fluid style={{ width: "550px" }} />
         </Col>
       </Row>
-      {/* <Row xs={1} md={2} lg={2} className="g-4">
-       
-      </Row> */}
+      {spinner && (
+        <div className="loader_spin">
+          <Spinner animation="border" variant="warning" />
+        </div>
+      )}
 
-      <Row xs={1} md={2} lg={2} className="g-4">
+      <Row xs={1} md={2} lg={2} className="g-4" style={{marginBottom:"25px"}}>
         {chefs.map((chef) => (
           <ChefCard key={chef.id} chef={chef}></ChefCard>
         ))}
       </Row>
-      <h3 className="text-center">Our brand partnership</h3>
-      <Marquee>
+      
+      <h3 className="text-center heading_text">Our brand partnership</h3>
+      <Marquee style={{marginBottom:"25px"}}>
         <Image src="/logo1.png" fluid style={{ width: "150px" }} />
         <Image src="/logo2.png" fluid style={{ width: "150px" }} />
         <Image src="/logo3.png" fluid style={{ width: "150px" }} />
@@ -69,9 +67,9 @@ const Home = () => {
         <Image src="/logo7.jpg" fluid style={{ width: "150px" }} />
       </Marquee>
 
-      <Row className="justify-content-center mb-5">
+      <Row className="justify-content-center mb-2">
         <Col md={8} className="text-center">
-          <h2>Why Choose Us?</h2>
+          <h2 className="heading_text">Why Choose Us?</h2>
         </Col>
       </Row>
       <Row className="justify-content-center">
@@ -86,7 +84,7 @@ const Home = () => {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Button variant="primary">Learn More</Button>
+              <Button variant="info" style={{color:"white"}}>Learn More</Button>
             </Card.Footer>
           </Card>
         </Col>
@@ -101,7 +99,7 @@ const Home = () => {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Button variant="primary">Learn More</Button>
+              <Button variant="info" style={{color:"white"}}>Learn More</Button>
             </Card.Footer>
           </Card>
         </Col>
@@ -116,7 +114,7 @@ const Home = () => {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Button variant="primary">Learn More</Button>
+              <Button variant="info" style={{color:"white"}}>Learn More</Button>
             </Card.Footer>
           </Card>
         </Col>

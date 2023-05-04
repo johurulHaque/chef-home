@@ -13,14 +13,15 @@ const Footer = () => {
             </p>
             <div>
               <Form>
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group>
                   <Form.Control
                     type="email"
                     name="email"
                     placeholder="Enter email"
                   />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+
+                <Button variant="info" style={{ color: "white" }}>
                   Subscribe
                 </Button>
               </Form>
@@ -49,7 +50,7 @@ const Footer = () => {
             <p>Lumbung Hidup Street 42 East Java 63125</p>
 
             <h5>Production Office</h5>
-            <p>Nggepeng Village Gresik  East China Java 61152</p>
+            <p>Nggepeng Village Gresik East China Java 61152</p>
           </Col>
         </Row>
       </Container>

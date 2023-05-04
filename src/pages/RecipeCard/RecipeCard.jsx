@@ -3,7 +3,7 @@ import { Button, Card, Col, Spinner } from "react-bootstrap";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import toast from "react-hot-toast";
-import LazyLoad from 'react-lazy-load';
+import LazyLoad from "react-lazy-load";
 const RecipeCard = ({ recipe }) => {
   const { name, rating, ingredients, image, cooking_method } = recipe;
   const [disable, setDisable] = useState(false);
@@ -28,28 +28,40 @@ const RecipeCard = ({ recipe }) => {
       <Card>
         <LazyLoad height={300}>
           {/* <img src='http://apod.nasa.gov/apod/image/1502/HDR_MVMQ20Feb2015ouellet1024.jpg' /> */}
-          <Card.Img variant="top" src="https://i.ibb.co/1M1nCdj/2.png" />
+          <Card.Img variant="top" src={image} style={{height:"300px"}} />
         </LazyLoad>
 
         <Card.Body>
           <Card.Title>
             <div className="d-flex justify-content-between align-items-center">
-              <h3>{name}</h3>
+              <h3 className="chef_name">{name}</h3>
             </div>
           </Card.Title>
-          <Card.Text>
+          <Card.Text className="chef_text">
             <p>
-              Ingredients:{" "}
+              <b>Ingredients:</b>{" "}
               {ingredients.map((ingre, idx) => (
                 <span key={idx}>{ingre}, </span>
               ))}
             </p>
-            <p>Cooking Method: {cooking_method}</p>
+            <p>
+              <b>Cooking Method: </b>
+              {cooking_method.slice(0,180)}...
+            </p>
           </Card.Text>
           {/* <Link to={`/chef/${id}`}>
             <Button variant="info" className="text-white">View Recipes</Button>
             </Link> */}
-          <div>
+          <div className="d-flex justify-content-between">
+            <Button
+              variant="info"
+              onClick={notify}
+              style={{ color: "white" }}
+              disabled={disable}
+            >
+              Add to favorite
+            </Button>
+            <div>
             <Rating
               placeholderRating={rating}
               emptySymbol={<FaRegStar></FaRegStar>}
@@ -57,10 +69,8 @@ const RecipeCard = ({ recipe }) => {
               fullSymbol={<FaStar />}
             ></Rating>
             <span className="ms-1">{rating}</span>
+            </div>
           </div>
-          <Button variant="info" onClick={notify} disabled={disable}>
-            Add to favorite
-          </Button>
         </Card.Body>
       </Card>
     </Col>

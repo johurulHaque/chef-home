@@ -4,7 +4,7 @@ import { Button, Card, Col } from "react-bootstrap";
 import { FaThumbsUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
-
+import './ChefCard.css'
 const ChefCard = ({ chef }) => {
   const { id, name, bio, experience, image, numLikes, numRecipes } = chef;
   // console.log(chef);
@@ -12,22 +12,21 @@ const ChefCard = ({ chef }) => {
     <Col>
       <Card>
         <LazyLoad height={300}>
-          {/* <img src='http://apod.nasa.gov/apod/image/1502/HDR_MVMQ20Feb2015ouellet1024.jpg' /> */}
-          <Card.Img variant="top" src="https://i.ibb.co/1M1nCdj/2.png" />
+          <Card.Img variant="top" src={image} style={{height:"300px"}}/>
         </LazyLoad>
         <Card.Body>
           <Card.Title>
             <div className="d-flex justify-content-between align-items-center">
-              <h3>{name}</h3>
-              <p>
-                <FaThumbsUp className="text-primary" />
+              <h3 className="chef_name">{name}</h3>
+              <p className="d-flex gap-2">
                 {numLikes}
+                <FaThumbsUp className="text-primary" />
               </p>
             </div>
           </Card.Title>
-          <Card.Text>
-            <p>Experience: {experience} years</p>
-            <p>Number of recipe: {numRecipes}</p>
+          <Card.Text className="chef_text">
+            <p><b>  Experience: </b>{experience} years</p>
+            <p><b>Number of recipe: </b>{numRecipes} recipes</p>
           </Card.Text>
           <Link to={`/chef/${id}`}>
             <Button variant="info" className="text-white">

@@ -5,11 +5,11 @@ import { AuthContext } from "../../providers/AuthProviders";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 
 const Register = () => {
-  const { createUser, googleSign, githubSign, updateUser } =
+  const { createUser, googleSign, githubSign, updateUser, allSignOut } =
     useContext(AuthContext);
-    const location = useLocation();
-    const navigate = useNavigate();
-    const from = location?.state?.from?.pathname || "/home";
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/home";
   // , googleSignOut
   // const [user, setUser] = useState("");
   const [success, setSuccess] = useState("");
@@ -45,7 +45,8 @@ const Register = () => {
 
         setSuccess("successfully register the user");
         // navigate(from);
-        navigate('/login')
+        handleSignOut();
+        navigate("/login");
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -87,15 +88,15 @@ const Register = () => {
       });
   };
 
-  //   const handleSignOut = () => {
-  //     googleSignOut()
-  //       .then(() => {
-  //         setUser(null);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
+  const handleSignOut = () => {
+    allSignOut()
+      .then(() => {
+        // setUser(null);
+      })
+      .catch((error) => {
+        // console.log(error);
+      });
+  };
 
   return (
     <Container className="w-25 mx-auto">
@@ -128,7 +129,7 @@ const Register = () => {
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group controlId="formBasicPassword" className="mb-2">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -140,11 +141,16 @@ const Register = () => {
         {/* <Form.Group controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group> */}
-        <Button variant="primary" type="submit">
+        <Button variant="info" type="submit" className="mb-2">
           Register
         </Button>
-        <Link to="/login">Go to Login</Link>
-        <Form.Text className="text-danger"></Form.Text>
+        <Link to="/login" style={{ textDecoration: "none" }}>
+          or Login
+        </Link>
+        <Form.Text className="text-success">{success}</Form.Text>
+        <Form.Text className="text-danger">{error}</Form.Text>
+        {/* <p className="text-success">{success}</p>
+      <p className="text-danger">{error}</p> */}
       </Form>
 
       {/* {user ? (
@@ -160,9 +166,8 @@ const Register = () => {
           <button onClick={handleGithub}>Github</button>
         </>
       )} */}
-      <p className="text-success">{success}</p>
-      <p className="text-danger">{error}</p>
-      <Button variant="outline-primary" onClick={handleGoogle}>
+
+      <Button variant="outline-primary" onClick={handleGoogle} className="mb-2">
         Sing With Google <FaGoogle />
       </Button>
       <Button variant="outline-info" onClick={handleGithub}>
