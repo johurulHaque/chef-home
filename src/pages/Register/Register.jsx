@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { createUser, googleSign, githubSign, updateUser, allSignOut } =
@@ -14,6 +14,7 @@ const Register = () => {
   // const [user, setUser] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [pass, setPass] = useState("password");
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -32,8 +33,8 @@ const Register = () => {
     } else if (password.length < 6) {
       setError("Password must be in six character.");
       return;
-    } else if( password != confirmPassword){
-      setError("Password doesn't match.");
+    } else if (password != confirmPassword) {
+      setError("Confirm Password doesn't match.");
       return;
     }
 
@@ -101,7 +102,12 @@ const Register = () => {
         // console.log(error);
       });
   };
-
+  const showPass = () => {
+    setPass("text");
+  };
+  const hidePass = () => {
+    setPass("password");
+  };
   return (
     <Container className="w-25 mx-auto">
       <Form onSubmit={handleRegister}>
@@ -132,18 +138,24 @@ const Register = () => {
             required
           />
         </Form.Group>
-
         <Form.Group controlId="formBasicPassword" className="mb-2">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Password </Form.Label>
+          <span>
+            {pass == "text" ? (
+              <FaEyeSlash onClick={hidePass} />
+            ) : (
+              <FaEye onClick={showPass} />
+            )}
+          </span>
           <Form.Control
-            type="password"
+            type={pass}
             name="password"
             placeholder="Password"
             required
           />
         </Form.Group>
         <Form.Group controlId="formBasicPassword" className="mb-2">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
             name="confirmPassword"
@@ -159,7 +171,8 @@ const Register = () => {
         </Button>
         <Link to="/login" style={{ textDecoration: "none" }}>
           or Login
-        </Link> <br />
+        </Link>{" "}
+        <br />
         <Form.Text className="text-success">{success}</Form.Text>
         <Form.Text className="text-danger">{error}</Form.Text>
         {/* <p className="text-success">{success}</p>
