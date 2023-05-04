@@ -21,8 +21,8 @@ const ErrorPage = () => {
             <Col md={6} className="p-0">
               <div className="errorPage">
                 <div>
-                  <h2>
-                    <span>Error</span>
+                  <h2 className="chef_text">
+                    <span>We fatch some problem to serve you, we are waiting to see you soon.</span>
                     {status || 404}
                   </h2>
                   <p>{error?.message}</p>

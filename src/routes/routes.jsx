@@ -37,7 +37,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/chef",
-    element: <RecipeLayout />,
+    element: <PrivateRoute><RecipeLayout /></PrivateRoute>,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -62,8 +62,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/blog",
-   
+    path: "/blog",   
     element:  <BlogLayout></BlogLayout>,
     errorElement: <ErrorPage />,
     children: [
