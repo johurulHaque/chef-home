@@ -23,6 +23,7 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
     const photoURL = form.photoURL.value;
 
     if (email === "" || password === "") {
@@ -30,6 +31,9 @@ const Register = () => {
       return;
     } else if (password.length < 6) {
       setError("Password must be in six character.");
+      return;
+    } else if( password != confirmPassword){
+      setError("Password doesn't match.");
       return;
     }
 
@@ -138,6 +142,15 @@ const Register = () => {
             required
           />
         </Form.Group>
+        <Form.Group controlId="formBasicPassword" className="mb-2">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="confirmPassword"
+            placeholder="confirmPassword"
+            required
+          />
+        </Form.Group>
         {/* <Form.Group controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group> */}
@@ -146,7 +159,7 @@ const Register = () => {
         </Button>
         <Link to="/login" style={{ textDecoration: "none" }}>
           or Login
-        </Link>
+        </Link> <br />
         <Form.Text className="text-success">{success}</Form.Text>
         <Form.Text className="text-danger">{error}</Form.Text>
         {/* <p className="text-success">{success}</p>
