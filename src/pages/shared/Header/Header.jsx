@@ -42,12 +42,14 @@ const Header = () => {
           <Nav>
             {/* {user && <img src={user?.photoURL} title={user?.displayName} />} */}
             {user?.photoURL && (
+              <Link to="/profile">
               <Image
                 src={user?.photoURL}
                 roundedCircle
                 style={{ width: "40px" }}
                 title={user?.displayName ? user?.displayName : '' }
               />
+              </Link>
             )}
             {/* <span>{user.displayName} */}
             {user ? (

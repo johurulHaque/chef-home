@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Container, Table } from "react-bootstrap";
+import { FaCloudDownloadAlt } from "react-icons/fa";
 import Pdf from "react-to-pdf";
 const Blog = () => {
   const ref = React.createRef();
@@ -17,7 +18,7 @@ const Blog = () => {
       <Pdf targetRef={ref} filename="code-example.pdf">
         {({ toPdf }) => (
           <Button variant="outline-info" onClick={toPdf}>
-            Generate Pdf
+           <FaCloudDownloadAlt /> Generate Pdf
           </Button>
         )}
       </Pdf>

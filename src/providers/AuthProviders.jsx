@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -18,56 +19,53 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
-
 const AuthProviders = ({ children }) => {
-  const [user,setUser] = useState(null);
-  const [loading,setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-    const unsubscribe = onAuthStateChanged(auth,loggedUser =>{
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
       // console.log('logged user',loggedUser);
       setUser(loggedUser);
-      setLoading(false)
-    })
+      setLoading(false);
+    });
 
-    return ()=> {
+    return () => {
       unsubscribe();
-    }
-  },[])
+    };
+  }, []);
 
   const createUser = (email, password) => {
-    setLoading(true)
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signIn = (email, password) => {
-    setLoading(true)
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const googleSign = () => {
-    setLoading(true)
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
 
   const githubSign = () => {
-    setLoading(true)
+    setLoading(true);
     return signInWithPopup(auth, githubProvider);
   };
 
-  const updateUser = (name,obj)=>{
+  const updateUser = (name, obj) => {
+    setLoading(true);
+    return updateProfile(name, obj);
+  };
 
-    // dfgfddddddddddddddd
-    setLoading(true)
-    return updateProfile(name,obj);
-  }
+  const allSignOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
 
-    const allSignOut = () => {
-      setLoading(true)
-      return signOut(auth);
-    };
-
-
+ 
 
   const authInfo = {
     user,
@@ -77,7 +75,8 @@ const AuthProviders = ({ children }) => {
     githubSign,
     updateUser,
     allSignOut,
-    loading
+    loading,
+
   };
 
   return (
