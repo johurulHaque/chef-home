@@ -10,21 +10,29 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import BlogLayout from "../layout/BlogLayout";
 import Blog from "../pages/Blog/Blog";
+import RegisterLayout from "../layout/RegisterLayout";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
     element: <LoginLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "/login",
         element: <Login />,
-      },
+      }
+    ],
+  },
+  {
+    path: "/register",
+    element: <RegisterLayout />,
+    errorElement: <ErrorPage />,
+    children: [     
       {
         path: "/register",
         element: <Register />,
-      },
+      }
     ],
   },
   {
@@ -41,13 +49,13 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/home",
+    path: "/",
     // element: <PrivateRoute> <Main></Main></PrivateRoute>,
     element:  <Main></Main>,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/home",
+        path: "/",
         element: <Home />,
       },
       

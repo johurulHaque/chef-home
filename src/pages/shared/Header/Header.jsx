@@ -1,17 +1,19 @@
 import React, { useContext } from "react";
 import { Button, Container, Image, Nav, Navbar } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { AuthContext } from "../../../providers/AuthProviders";
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 
 const Header = () => {
   const { user, allSignOut } = useContext(AuthContext);
-  console.log(user);
+  const navigate = useNavigate();
+  // console.log(user);
 
   const handleLogout = () => {
     allSignOut()
       .then(() => {
+        navigate('/login')
         // Sign-out successful.
       })
       .catch((error) => {
@@ -22,7 +24,7 @@ const Header = () => {
   return (
     <Container>
       <Navbar collapseOnSelect expand="lg" bg="lite" variant="lite">
-        <Navbar.Brand href="/home">
+        <Navbar.Brand href="/">
           <img src="/logo.png" height="60px" width="50px" alt="" />{" "}
           <span className="site_name">Chef Home</span>
         </Navbar.Brand>
@@ -30,21 +32,21 @@ const Header = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto n_link">
             <NavLink
-              to="/home"
+              to="/"
               className={({ isActive }) => (isActive ? "active" : "default")}
             >
-              Home
+             <b> Home</b>
             </NavLink>
-            <NavLink to="/blog">Blog</NavLink>
+            <NavLink to="/blog"  className={({ isActive }) => (isActive ? "active" : "default")}> <b>  Blog</b></NavLink>
           </Nav>
           <Nav>
             {/* {user && <img src={user?.photoURL} title={user?.displayName} />} */}
-            {user && (
+            {user?.photoURL && (
               <Image
                 src={user?.photoURL}
                 roundedCircle
                 style={{ width: "40px" }}
-                title={user?.displayName}
+                title={user?.displayName ? user?.displayName : '' }
               />
             )}
             {/* <span>{user.displayName} */}

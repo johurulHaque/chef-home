@@ -4,15 +4,16 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import toast from "react-hot-toast";
 import LazyLoad from "react-lazy-load";
+
 const RecipeCard = ({ recipe }) => {
   const { name, rating, ingredients, image, cooking_method } = recipe;
   const [disable, setDisable] = useState(false);
   //   console.log("recipe", recipe);
-  //   const [spinner, setSpinner] = useState(true);
+    // const [spinner, setSpinner] = useState(true);
 
-  //   if (recipe) {
-  //     setSpinner(false);
-  //   }
+    // if (recipe) {
+    //   setSpinner(false);
+    // }
   const notify = () => {
     toast.success("The recipe is your favorite.");
     setDisable(true);
@@ -39,7 +40,7 @@ const RecipeCard = ({ recipe }) => {
           </Card.Title>
           <Card.Text className="chef_text">
             <p>
-              <b>Ingredients:</b>{" "}
+              <b> Ingredients:</b>{" "}
               {ingredients.map((ingre, idx) => (
                 <span key={idx}>{ingre}, </span>
               ))}
@@ -54,7 +55,7 @@ const RecipeCard = ({ recipe }) => {
             </Link> */}
           <div className="d-flex justify-content-between">
             <Button
-              variant="info"
+              variant={disable ? "secondary" : "info"}
               onClick={notify}
               style={{ color: "white" }}
               disabled={disable}

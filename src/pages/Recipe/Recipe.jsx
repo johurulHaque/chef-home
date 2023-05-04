@@ -25,9 +25,16 @@ const Recipe = () => {
         <Col md={8}>
           <h2 className="chef_name">{name}</h2>
           <p className="chef_text">{bio}</p>
-          <p  className="chef_text">Likes: {numLikes}</p>
-          <p  className="chef_text">Number of Recipes: {numRecipes}</p>
-          <p  className="chef_text">Years of Experience: {experience}</p>
+          <p className="chef_text">
+            <b> Likes: </b>
+            {numLikes}
+          </p>
+          <p className="chef_text">
+            <b> Number of Recipes: </b> {numRecipes} recipes.
+          </p>
+          <p className="chef_text">
+            <b> Years of Experience: </b> {experience} years.
+          </p>
           <Badge pill variant="primary">
             Fantastic Chef
           </Badge>

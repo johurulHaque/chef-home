@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Lottie from "lottie-react";
+import cook from "../../assets/cook.json"
 import {
   Button,
   Card,
@@ -27,8 +29,8 @@ const Home = () => {
 
   // console.log(chef)
   return (
-    <Container>      
-      <Row className="align-items-center" style={{marginBottom:"25px"}}>
+    <Container>
+      <Row className="align-items-center" style={{ marginBottom: "25px" }}>
         <Col md={6} className="p-5">
           <h1 className="banner_head">Delicious Chinese Food</h1>
           <p>
@@ -41,7 +43,8 @@ const Home = () => {
           </Button>
         </Col>
         <Col md={6} className="p-0">
-          <Image src="/images.jpg" fluid style={{ width: "550px" }} />
+        <Lottie animationData={cook} loop={true} />
+          {/* <Image src="/images.jpg" fluid style={{ width: "550px" }} /> */}
         </Col>
       </Row>
       {spinner && (
@@ -50,14 +53,20 @@ const Home = () => {
         </div>
       )}
 
-      <Row xs={1} md={2} lg={2} className="g-4" style={{marginBottom:"25px"}}>
+      <Row
+        xs={1}
+        md={2}
+        lg={2}
+        className="g-4"
+        style={{ marginBottom: "25px" }}
+      >
         {chefs.map((chef) => (
           <ChefCard key={chef.id} chef={chef}></ChefCard>
         ))}
       </Row>
-      
+
       <h3 className="text-center heading_text">Our brand partnership</h3>
-      <Marquee style={{marginBottom:"25px"}}>
+      <Marquee style={{ marginBottom: "25px" }}>
         <Image src="/logo1.png" fluid style={{ width: "150px" }} />
         <Image src="/logo2.png" fluid style={{ width: "150px" }} />
         <Image src="/logo3.png" fluid style={{ width: "150px" }} />
@@ -76,46 +85,46 @@ const Home = () => {
         <Col md={4}>
           <Card>
             <Card.Body>
-              <Card.Title> Authentic Flavors ❤️</Card.Title>
-              <Card.Text>
+              <Card.Title className="chef_text"><b> Authentic Flavors</b> ❤️</Card.Title>
+              <Card.Text className="chef_text">
                 We use only the freshest ingredients and traditional cooking
                 techniques to create dishes that are bursting with authentic
                 Chinese flavors.
               </Card.Text>
+              <Button variant="warning" style={{ color: "white" }}>
+                Explore More
+              </Button>
             </Card.Body>
-            <Card.Footer>
-              <Button variant="info" style={{color:"white"}}>Learn More</Button>
-            </Card.Footer>
           </Card>
         </Col>
         <Col md={4}>
           <Card>
             <Card.Body>
-              <Card.Title>Affordable Prices 💲</Card.Title>
-              <Card.Text>
+              <Card.Title className="chef_text"><b> Affordable Prices</b> 💲</Card.Title>
+              <Card.Text className="chef_text">
                 We believe that great food should be accessible to everyone,
                 which is why we offer our delicious dishes at affordable
-                prices.We are always here to serve you.
+                prices.We are always...
               </Card.Text>
+              <Button variant="warning" style={{ color: "white" }}>
+                Explore More
+              </Button>
             </Card.Body>
-            <Card.Footer>
-              <Button variant="info" style={{color:"white"}}>Learn More</Button>
-            </Card.Footer>
           </Card>
         </Col>
         <Col md={4}>
           <Card>
             <Card.Body>
-              <Card.Title>Exceptional Service 😀</Card.Title>
-              <Card.Text>
+              <Card.Title className="chef_text"><b> Exceptional Service</b> 😀</Card.Title>
+              <Card.Text className="chef_text">
                 Our friendly staff is dedicated to providing exceptional service
                 to every customer, making sure that your dining experience is
-                enjoyable and memorable.
+                ...
               </Card.Text>
+              <Button variant="warning" style={{ color: "white" }}>
+                Explore More
+              </Button>
             </Card.Body>
-            <Card.Footer>
-              <Button variant="info" style={{color:"white"}}>Learn More</Button>
-            </Card.Footer>
           </Card>
         </Col>
       </Row>
